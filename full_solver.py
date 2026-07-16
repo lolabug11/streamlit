@@ -44,9 +44,9 @@ if quadratic != '':
         if int(a) == 0:
             a = 1
         else:
-            a = Decimal(a)
-        b = Decimal(b)
-        c = Decimal(c)
+            a = Decimal(str(a))
+        b = Decimal(str(b))
+        c = Decimal(str(c))
         st.write("Do you want to factor or solve your equation?")
         want_to_solve = st.checkbox("Solve the equation")
         want_to_factor = st.checkbox("Factor the equation")
@@ -54,21 +54,21 @@ if quadratic != '':
 
         if want_to_solve:
             b_squared_minus_four_a_c = Decimal((b**2) -( 4 * a * c))
-            st.write(f'b^2 == {b**2}, 4ac = {4 * a * c}, a = {a} , b = {b} , c = {c}')
-            st.write(b_squared_minus_four_a_c)
+
             if b_squared_minus_four_a_c > 0:
-                positive = -b + sqrt(b_squared_minus_four_a_c)/Decimal(2)*a
-                negative = Decimal(-b - Decimal(sqrt(b_squared_minus_four_a_c)))/Decimal(2)*a
+                positive = round(Decimal(-b + Decimal(sqrt(b_squared_minus_four_a_c)))/(Decimal(2)*a),5)
+                negative = round(Decimal(-b - Decimal(sqrt(b_squared_minus_four_a_c)))/(Decimal(2)*a),5)
                 vertex = (positive+negative)/2
                 if b_squared_minus_four_a_c == 0:
                     st.write(f'The Solution is {positive}')
                 else:
-                    data = {"plus":[f"({positive},0)"], "minus":[f"({negative},0)"], "vertex":[vertex]}
+                    data = {"plus":[f"({positive.normalize()},0)"], "minus":[f"({negative.normalize()},0)"], "vertex":[f"({vertex.normalize()},{a*(vertex.normalize()**2)+b*vertex.normalize()+c})"]}
                     dataframe = pd.DataFrame(data)
                     st.table(dataframe,width="content")
+
             else:
                 st.write("The vertexes would be complex numbers!")
         elif want_to_factor: 
-            st.write("FUCK")
+            st.write("WIP")
     elif is_in_factored:
-        st.write("BITCH")
+        st.write("WIP")
