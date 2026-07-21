@@ -62,7 +62,7 @@ def GCF(a = 1,b = 1 ,c = 1, three_num_gcf = True ):
                 b_factor_pairs[number] = b/number
         gcf = {}
         for key in a_factor_pairs:
-            if key in b_factor_pairs and key in c_factor_pairs:
+            if key in b_factor_pairs:
                 gcf[a] = [key,a_factor_pairs[key]]
                 gcf[b] = [key,b_factor_pairs[key]]
         gcf = gcf[a][0]
