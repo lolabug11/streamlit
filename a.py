@@ -10,44 +10,64 @@ import numpy as np
 import time as t
 from decimal import Decimal
 # gets the greatist common factor of 3 numbers a b and c then returns it
-def GCF(a ,b ,c ): 
-    a = int(a)
-    b = int(b)
-    c = int(c)
-    if a < 0:
-        a *= -1
-    if b < 0:
-        b *= -1
-    if c < 0:
-        c *= -1
+def GCF(a = 1,b = 1 ,c = 1, three_num_gcf = True ): 
+    if three_num_gcf:
+        a = int(a)
+        b = int(b)
+        c = int(c)
+        if a < 0:
+            a *= -1
+        if b < 0:
+            b *= -1
+        if c < 0:
+            c *= -1
 
-    a_factor_pairs = {}
-    b_factor_pairs = {}
-    c_factor_pairs = {}
-    for number in range(a):
-        number += 1
-        if a % number == 0:
-            a_factor_pairs[number] = a/number
-    for number in range(b):
-        number += 1
-        if b % number == 0:
-            b_factor_pairs[number] = b/number
-    for number in range(c):
-        number += 1
-        if c % number == 0:
-            c_factor_pairs[number] = c/number
-    gcf = {}
+        a_factor_pairs = {}
+        b_factor_pairs = {}
+        c_factor_pairs = {}
+        for number in range(a):
+            number += 1
+            if a % number == 0:
+                a_factor_pairs[number] = a/number
+        for number in range(b):
+            number += 1
+            if b % number == 0:
+                b_factor_pairs[number] = b/number
+        for number in range(c):
+            number += 1
+            if c % number == 0:
+                c_factor_pairs[number] = c/number
+        gcf = {}
 
-    for key in a_factor_pairs:
-        if key in b_factor_pairs and key in c_factor_pairs:
-            gcf[a] = [key,a_factor_pairs[key]]
-            gcf[b] = [key,b_factor_pairs[key]]
-            gcf[c] = [key,c_factor_pairs[key]]
-    
+        for key in a_factor_pairs:
+            if key in b_factor_pairs and key in c_factor_pairs:
+                gcf[a] = [key,a_factor_pairs[key]]
+                gcf[b] = [key,b_factor_pairs[key]]
+                gcf[c] = [key,c_factor_pairs[key]]
+        
 
-    gcf = gcf[a][0]
+        gcf = gcf[a][0]
 
-    return gcf
+        return gcf
+    else:
+        a_factor_pairs = {}
+        b_factor_pairs = {}
+        for number in range(a):
+            number += 1
+            if a % number == 0:
+                a_factor_pairs[number] = a/number
+        for number in range(b):
+            number += 1
+            if b % number == 0:
+                b_factor_pairs[number] = b/number
+        gcf = {}
+        for key in a_factor_pairs:
+            if key in b_factor_pairs and key in c_factor_pairs:
+                gcf[a] = [key,a_factor_pairs[key]]
+                gcf[b] = [key,b_factor_pairs[key]]
+        gcf = gcf[a][0]
+
+        return gcf
 
 
 st.markdown("##### Quadratic Solver!!!")
@@ -107,24 +127,15 @@ if quadratic != '':
         c = round(float(c),3)
 
         # use a b and c to solve the quadratic formula
-        b_squared_minus_four_a_c = ((b**2) -( 4 * a * c))
-
-        if b_squared_minus_four_a_c == 0:
-            positive = ((b * -1) + sqrt((b**2) - (4*a*c)))/(2*a)
-            negative = (((b * -1) - (sqrt(b_squared_minus_four_a_c)))/((2)*a))
-            vertex = (positive+negative)/2
-            st.write(f"({vertex},{a*(vertex**2)+b*vertex+c})")
+        determanint = ((b**2) -( 4 * a * c))
+        roots = None
+        if determanint == 0:
+            roots = [-1 * b/2*a]
             complex_num = False
-        elif b_squared_minus_four_a_c > 0:
-            positive = ((b * -1) + sqrt((b**2) - (4*a*c)))/(2*a)
-            negative = (((b * -1) - (sqrt(b_squared_minus_four_a_c)))/((2)*a))
-            vertex = (positive+negative)/2
+        elif determanint > 0:
+            r = GCF()
 
-            data = {"plus":[f"({positive},0)"], "minus":[f"({negative},0)"], "vertex":[f"({vertex},{a*(vertex**2)+b*vertex+c})"]}
-            dataframe = pd.DataFrame(data)
-            st.table(dataframe,width="content")
             complex_num = False
-
         else:
             complex_num = True
             st.write("The vertexes would be complex numbers!")
