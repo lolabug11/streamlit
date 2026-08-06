@@ -277,8 +277,7 @@ def parse_factored_form_quadratic(quadratic:str):
         d = 1.0
 
     else:
-        print(st.session_state['in_factored_form'])
-        print(st.session_state['quadratic_tab'])
+        print(d)
         d = float(d)
         d = round(d,4)
 
@@ -351,7 +350,7 @@ elif st.session_state['quadratic_tab'] == "Factored Form Input":
 
 
 with solve_standered_form_input_tab:
-    st.session_state['in_factored_form'] = False
+
     st.write("Input the coefficents of ax^2 + bx + c")
     a = st.number_input("A", help="Enter the A term of your quadratic",placeholder="Enter your A Term",width=250,value=1.00)
     b = st.number_input("B", help="Enter the B term of your quadratic",placeholder="Enter your B Term",width=250,value=1.00)
@@ -363,10 +362,9 @@ with solve_standered_form_input_tab:
         st.session_state['factored_equation'] = factor_standered_form_quadratic(a,b,c)
     else:
         st.session_state['factored_equation'] = "The Calculator cant do this at the moment sorry!"
-    print(st.session_state['in_factored_form'])
 
 with factored_form_input:
-    st.session_state['in_factored_form'] = True
+
     equation = st.text_input("Enter your quadratic",placeholder="Enter your quadratic")
 
 with output_tab:
