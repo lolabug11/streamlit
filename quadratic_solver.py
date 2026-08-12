@@ -73,10 +73,11 @@ with factored_form_inputs:
 
 
 with outputs:
-    round_to = st.number_input("How many decimal places do you want your roots to be rounded to?",value=2,help="1 = tenths place 2 = hundreths place so on so forth")
+    
     if  st.session_state["Factored_Equation"] == None:
         st.write("Please enter a equation.")
     else:
+        round_to = st.number_input("How many decimal places do you want your roots to be rounded to?",value=2,help="1 = tenths place 2 = hundreths place so on so forth")
         a = st.session_state['a']
         b = st.session_state['b']
         c = st.session_state['c']
@@ -96,8 +97,8 @@ with outputs:
             vertex = roots[2]
             solution1 = roots[3]
             solution2 = roots[4]
-            decimal_root_1 = round(int(roots[5],round_to)
-            decimal_root_2 = round(roots[6],round_to)
+            decimal_root_1 = round((roots[5]),round_to)
+            decimal_root_2 = round((roots[6]),round_to)
         else:
             fraction_root1 = "N/A"
             fraction_root2 = "N/A"

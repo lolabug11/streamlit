@@ -112,10 +112,11 @@ def find_roots_with_discriminant_greater_than_0(a:float,b:float,c:float,discrimi
     if '.' in str(vertex_y):
         vertex_y = Fraction(str(vertex_y))
         vertex_y = vertex_y.limit_denominator(1000)
+    print(f'r1 = {r1} r2 = {r2}')
     if b >= 0:
-        return [f'({fraction_r1},0)', f'({fraction_r2}, 0)', f'({vertex_x}, {vertex_y})', f'(-{b} + \N{SQUARE ROOT}{discriminant})/{2*a}', f'(-{b} - \N{SQUARE ROOT}{discriminant})/{2*a}', f'({r1},0)', f'({r2}, 0)']
+        return [f'({fraction_r1},0)', f'({fraction_r2}, 0)', f'({vertex_x}, {vertex_y})', f'(-{b} + \N{SQUARE ROOT}{discriminant})/{2*a}', f'(-{b} - \N{SQUARE ROOT}{discriminant})/{2*a}', r1, r2]
     else:
-        return [f'({fraction_r1},0)', f'({fraction_r2}, 0)', f'({vertex_x}, {vertex_y})', f'({-b} + \N{SQUARE ROOT}{discriminant})/{2*a}', f'({-b} - \N{SQUARE ROOT}{discriminant})/{2*a}', f'({r1},0)', f'({r2}, 0)']
+        return [f'({fraction_r1},0)', f'({fraction_r2}, 0)', f'({vertex_x}, {vertex_y})', f'({-b} + \N{SQUARE ROOT}{discriminant})/{2*a}', f'({-b} - \N{SQUARE ROOT}{discriminant})/{2*a}', r1,r2]
 def find_roots_with_discriminant_less_than_0(a:float,b:float,c:float,discriminant:float):
     r1 = round((-b + sqrt(-discriminant))/(2*a), 4)
     r2 = round((-b - sqrt(-discriminant))/(2*a), 4)
