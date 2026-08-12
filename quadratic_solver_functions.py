@@ -19,6 +19,8 @@ def get_factors(number,get_negative_nums = True):
                 factors[posible_factor] = (number / posible_factor) * -1
 
         return factors
+    elif number == 1:
+        return {1:1,-1:-1}
     else:
         factors = {}
         for posible_factor in range(number):
@@ -28,7 +30,7 @@ def get_factors(number,get_negative_nums = True):
                 factors[posible_factor] = number / posible_factor
                 if get_negative_nums:
                     factors[-posible_factor] = - (number/posible_factor)
-
+        
         return factors
 
 
@@ -44,49 +46,53 @@ def factor_standered_form_quadratic(a,b,c):
 
     ac = a * c
     ac_factors = get_factors(ac)
-    ac_factor_pair_that_add_to_b = {}
+    print(f'AC Factors {ac_factors}')
+    ac_factor_pair_that_add_to_b = []
+
     equation  = None
     for factor in ac_factors:
         if factor + ac_factors[factor] == b:
             ac_factor_pair_that_add_to_b = [factor, ac_factors[factor]]
+    if ac_factor_pair_that_add_to_b != []:
+        if a == 1:
+            if  ac_factor_pair_that_add_to_b[0] + ac_factor_pair_that_add_to_b[1] == b:
+                if ac_factor_pair_that_add_to_b[0] < 0:
+                    sign = '-'
+                    ac_factor_pair_that_add_to_b[0] *= -1
+                else:
+                    sign = '+'
 
-    if a == 1:
-        if  ac_factor_pair_that_add_to_b[0] + ac_factor_pair_that_add_to_b[1] == b:
-            if ac_factor_pair_that_add_to_b[0] < 0:
-                sign = '-'
-                ac_factor_pair_that_add_to_b[0] *= -1
-            else:
-                sign = '+'
+                if ac_factor_pair_that_add_to_b[1] < 0 :
+                    sign2 = '-'
+                    ac_factor_pair_that_add_to_b[1] *= -1
+                else:
+                    sign2 = '+'
+                equation = f'(x {sign} {ac_factor_pair_that_add_to_b[0]})(x {sign2} {ac_factor_pair_that_add_to_b[1]})'
+                return equation
 
-            if ac_factor_pair_that_add_to_b[1] < 0 :
-                sign2 = '-'
-                ac_factor_pair_that_add_to_b[1] *= -1
-            else:
-                sign2 = '+'
-            equation = f'(x {sign} {ac_factor_pair_that_add_to_b[0]})(x {sign2} {ac_factor_pair_that_add_to_b[1]})'
-            return equation
+        else:
+            for a1 in a_factors:
+                for c1 in c_factors:
+                    c2 = c_factors[c1]
+                    a2 = a_factors[a1]
 
+                    if a1*c2 + a2*c1 == b and a1*a2==a and c1*c2 == c:
+                        if c2 < 0:
+                            sign = '-'
+                            c2 *= -1
+                        else:
+                            sign = '+'
+                        
+                        if c1 < 0 :
+                            sign2 = '-'
+                            c1 *= -1
+                        else:
+                            sign2 = '+'
+                        equation = f'({a1}x {sign2} {c1})({a2}x {sign} {c2})'
+
+                        return equation
     else:
-        for a1 in a_factors:
-            for c1 in c_factors:
-                c2 = c_factors[c1]
-                a2 = a_factors[a1]
-
-                if a1*c2 + a2*c1 == b and a1*a2==a and c1*c2 == c:
-                    if c2 < 0:
-                        sign = '-'
-                        c2 *= -1
-                    else:
-                        sign = '+'
-                    
-                    if c1 < 0 :
-                        sign2 = '-'
-                        c1 *= -1
-                    else:
-                        sign2 = '+'
-                    equation = f'({a1}x {sign2} {c1})({a2}x {sign} {c2})'
-
-                    return equation
+        return False
     
 
 
