@@ -24,7 +24,7 @@ if 'b' not in st.session_state:
     st.session_state['b'] = None
 if 'c' not in st.session_state:
     st.session_state['c'] = None
-standered_form_inputs,factored_form_inputs,outputs = st.tabs(["Standered Form Inputs", "Factored Form Inputs", "Outputs"], key="Tabs", on_change="rerun")
+standered_form_inputs,factored_form_inputs,outputs,quadratic_function_output = st.tabs(["Standered Form Inputs", "Factored Form Inputs", "Outputs", "Quadratic Function Output"], key="Tabs", on_change="rerun")
 
 with standered_form_inputs:
     a = st.number_input("A",help="Enter The A term of your quadratic", value=1,on_change=standered_form_inputs_input_on_change)
@@ -109,3 +109,11 @@ with outputs:
             decimal_root_2 = "N/A"
         data = {"Standered Form":st.session_state["Standered_Equation"],"Factored Equation": st.session_state["Factored_Equation"],"Decimal Root 1":decimal_root_1,"Decimal Root 2":decimal_root_2, "Fraction Root One": fraction_root1,"Fraction Root Two": fraction_root2, "Vertex": vertex,"Solution One":solution1,"Solution Two":solution2}
         st.table(data)
+
+with quadratic_function_output:
+    if st.session_state["Factored_Equation"] == None:
+        st.write("Please enter a equation.")
+    else:
+        x = st.number_input("x",help="Enter the number you want the output for",value=0)
+        output = (int(st.session_state['a'])*(x**2))+(int(st.session_state['b'])*(x**2))+(st.session_state['c'])
+        st.write(f'The output to your quadratic function f({x}) = {st.session_state["a"]}x^2 + {st.session_state["b"]}x + {st.session_state["c"]} is {int(output)}')

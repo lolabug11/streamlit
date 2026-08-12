@@ -1,0 +1,8 @@
+Algabra Solver
+-------------
+1. Get User Input
+2. Parse User Input so that theres a dict in the format {'var': var1_coefficent, 'var2':var2_coefficeint}
+3. Ask User which variable they want to solve for if not all  of them
+4. If user does not want to  solve for all variables go to step 5 if they do go to step ___
+5. check if the variable is in the dict with all the variables
+CONTINUE 
