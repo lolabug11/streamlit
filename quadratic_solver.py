@@ -67,7 +67,7 @@ with factored_form_inputs:
             st.session_state["Standered_Equation"] = f'{a}x^2 - {-b}x + {c}'
         elif c < 0:
             st.session_state["Standered_Equation"] = f'{a}x^2 + {b}x - {-c}'
-        print(standered_equation)
+        # print(standered_equation)
 
 
 
@@ -85,14 +85,20 @@ with outputs:
             root1 = roots
             root2 = 'N/A'
             vertex = root1
+            solution1 = "N/A"
+            solution2 = "N/A"
         elif identifyer == 2:    
             root1 = roots[0]
             root2 = roots[1]
             vertex = roots[2]
+            solution1 = roots[3]
+            solution2 = roots[4]
         else:
             root1 = "N/A"
             root2 = "N/A"
             vertex = "This calculator does not calculate the vertex for parabolas with imaginary roots"
+            solution1 = "N/A"
+            solution2 = "N/A"
             
-        data = {"Standered Form":st.session_state["Standered_Equation"],"Factored Equation": st.session_state["Factored_Equation"], "Root One": root1,"Root Two": root2, "Vertex": vertex}
+        data = {"Standered Form":st.session_state["Standered_Equation"],"Factored Equation": st.session_state["Factored_Equation"], "Root One": root1,"Root Two": root2, "Vertex": vertex,"Solution One":solution1,"Solution Two":solution2}
         st.table(data)
