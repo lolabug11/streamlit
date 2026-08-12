@@ -101,11 +101,11 @@ def find_roots_with_discriminant_greater_than_0(a:float,b:float,c:float,discrimi
     r1 = (-b + sqrt(discriminant))/(2*a)
     r2 = (-b - sqrt(discriminant))/(2*a)
     if '.' in str((-b + sqrt(discriminant))/(2*a)):
-        r1 = Fraction(str((-b + sqrt(discriminant))/(2*a)))
-        r1 = r1.limit_denominator(1000)
+        fraction_r1 = Fraction(str((-b + sqrt(discriminant))/(2*a)))
+        fraction_r1 = fraction_r1.limit_denominator(1000)
     if '.' in str((-b - sqrt(discriminant))/(2*a)):
-        r2 = Fraction(str((-b - sqrt(discriminant))/(2*a)))
-        r2 = r2.limit_denominator(1000)
+        fraction_r2 = Fraction(str((-b - sqrt(discriminant))/(2*a)))
+        fraction_r2 = fraction_r2.limit_denominator(1000)
     vertex_x = (r1+r2)/2
     x = vertex_x
     vertex_y = ((a) * (vertex_x**2)) + (vertex_x * b) + c
@@ -113,9 +113,9 @@ def find_roots_with_discriminant_greater_than_0(a:float,b:float,c:float,discrimi
         vertex_y = Fraction(str(vertex_y))
         vertex_y = vertex_y.limit_denominator(1000)
     if b >= 0:
-        return [f'({r1},0)', f'({r2}, 0)', f'({vertex_x}, {vertex_y})', f'(-{b} + \N{SQUARE ROOT}{discriminant})/{2*a}', f'(-{b} - \N{SQUARE ROOT}{discriminant})/{2*a}']
+        return [f'({fraction_r1},0)', f'({fraction_r2}, 0)', f'({vertex_x}, {vertex_y})', f'(-{b} + \N{SQUARE ROOT}{discriminant})/{2*a}', f'(-{b} - \N{SQUARE ROOT}{discriminant})/{2*a}', f'({r1},0)', f'({r2}, 0)']
     else:
-        return [f'({r1},0)', f'({r2}, 0)', f'({vertex_x}, {vertex_y})', f'({-b} + \N{SQUARE ROOT}{discriminant})/{2*a}', f'({-b} - \N{SQUARE ROOT}{discriminant})/{2*a}']
+        return [f'({fraction_r1},0)', f'({fraction_r2}, 0)', f'({vertex_x}, {vertex_y})', f'({-b} + \N{SQUARE ROOT}{discriminant})/{2*a}', f'({-b} - \N{SQUARE ROOT}{discriminant})/{2*a}', f'({r1},0)', f'({r2}, 0)']
 def find_roots_with_discriminant_less_than_0(a:float,b:float,c:float,discriminant:float):
     r1 = round((-b + sqrt(-discriminant))/(2*a), 4)
     r2 = round((-b - sqrt(-discriminant))/(2*a), 4)

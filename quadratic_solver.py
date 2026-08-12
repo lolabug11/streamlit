@@ -73,6 +73,7 @@ with factored_form_inputs:
 
 
 with outputs:
+    round_to = st.number_input("How many decimal places do you want your roots to be rounded to?",value=2,help="1 = tenths place 2 = hundreths place so on so forth")
     if  st.session_state["Factored_Equation"] == None:
         st.write("Please enter a equation.")
     else:
@@ -82,23 +83,28 @@ with outputs:
         roots,identifyer = solve_standered_form(a,b,c)
         
         if identifyer == 1:
-            root1 = roots
-            root2 = 'N/A'
-            vertex = root1
+            decimal_root_1 = round(roots,round_to)
+            decimal_root_2 = "N/A"
+            fraction_root1 = "N/A"
+            fraction_root2 = 'N/A'
+            vertex = decimal_root_1
             solution1 = "N/A"
             solution2 = "N/A"
         elif identifyer == 2:    
-            root1 = roots[0]
-            root2 = roots[1]
+            fraction_root1 = roots[0]
+            fraction_root2 = roots[1]
             vertex = roots[2]
             solution1 = roots[3]
             solution2 = roots[4]
+            decimal_root_1 = round(int(roots[5],round_to)
+            decimal_root_2 = round(roots[6],round_to)
         else:
-            root1 = "N/A"
-            root2 = "N/A"
+            fraction_root1 = "N/A"
+            fraction_root2 = "N/A"
             vertex = "This calculator does not calculate the vertex for parabolas with imaginary roots"
             solution1 = "N/A"
             solution2 = "N/A"
-            
-        data = {"Standered Form":st.session_state["Standered_Equation"],"Factored Equation": st.session_state["Factored_Equation"], "Root One": root1,"Root Two": root2, "Vertex": vertex,"Solution One":solution1,"Solution Two":solution2}
+            decimal_root_1 = "N/A"
+            decimal_root_2 = "N/A"
+        data = {"Standered Form":st.session_state["Standered_Equation"],"Factored Equation": st.session_state["Factored_Equation"],"Decimal Root 1":decimal_root_1,"Decimal Root 2":decimal_root_2, "Fraction Root One": fraction_root1,"Fraction Root Two": fraction_root2, "Vertex": vertex,"Solution One":solution1,"Solution Two":solution2}
         st.table(data)
