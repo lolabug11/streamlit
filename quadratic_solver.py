@@ -84,7 +84,7 @@ with outputs:
         roots,identifyer = solve_standered_form(a,b,c)
         
         if identifyer == 1:
-            decimal_root_1 = round(int(roots),round_to)
+            decimal_root_1 = round(float(roots),round_to)
             decimal_root_2 = "N/A"
             fraction_root1 = "N/A"
             fraction_root2 = 'N/A'
