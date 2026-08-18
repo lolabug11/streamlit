@@ -137,7 +137,7 @@ def solve_standered_form(a=1,b=1,c=1) -> tuple:
     # print(f'discriminant = {discriminant}')
     if discriminant == 0:
         r = (b*-1)/(2*a)
-        return str(r)
+        return str(r),1
     elif discriminant > 0:
         return find_roots_with_discriminant_greater_than_0(a=a,b=b,c=c,discriminant= discriminant), 2
     else:
