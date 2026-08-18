@@ -86,7 +86,8 @@ with outputs:
         if identifyer == 1:
             decimal_root_1 = round(float(roots),round_to)
             decimal_root_2 = "N/A"
-            fraction_root1 = "N/A"
+            fraction_root1 = 
+        
             fraction_root2 = 'N/A'
             vertex = decimal_root_1
             solution1 = "N/A"
