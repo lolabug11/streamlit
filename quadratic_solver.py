@@ -116,5 +116,5 @@ with quadratic_function_output:
         st.write("Please enter a equation.")
     else:
         x = st.number_input("x",help="Enter the number you want the output for",value=0)
-        output = (int(st.session_state['a'])*(x**2))+(int(st.session_state['b'])*(x**2))+(st.session_state['c'])
+        output = (int(st.session_state['a'])*(x**2))+(int(st.session_state['b'])*(x))+(st.session_state['c'])
         st.write(f'The output to your quadratic function f({x}) = {st.session_state["a"]}x^2 + {st.session_state["b"]}x + {st.session_state["c"]} is {int(output)}')
